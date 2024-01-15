@@ -13,19 +13,11 @@ public class TransactionFixture {
     private final static EntityTransaction tx = em.getTransaction();
 
     public static void useEntityManager(Consumer<EntityManager> emConsumer) {
-        try {
+        TransactionFixture.useTransaction(tx -> {
             tx.begin();
-
             emConsumer.accept(em);
-
             tx.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            tx.rollback();
-        } finally {
-            em.close();
-        }
-        emf.close();
+        });
     }
 
     public static void useTransaction(Consumer<EntityTransaction> txConsumer) {
