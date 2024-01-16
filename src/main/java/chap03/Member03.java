@@ -1,20 +1,21 @@
 package chap03;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Member {
+public class Member03 {
 
     @Id
+    @GeneratedValue
     private Long id;
     private String name;
 
-    public Member() {
+    protected Member03() {
     }
 
-    public Member(final Long id, final String name) {
-        this.id = id;
+    public Member03(final String name) {
         this.name = name;
     }
 
